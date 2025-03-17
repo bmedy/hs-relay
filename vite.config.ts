@@ -34,7 +34,7 @@ export default defineConfig({
       }
      })
   ],
-  base: './hs-relay/',
+  base: '/hs-relay/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
