@@ -33,10 +33,10 @@
         <li class="list-group-item d-flex justify-content-between align-items-start" v-for="item in planeteList" :key="item.type">
           <span class="badge text-bg-secondary rounded-pill" style="margin-top:auto;margin-bottom:auto;">{{ item.lvl }}</span>
           <div class="ms-2 me-auto">
-            <div class="fw-bold">{{ item.nom }}</div>
+            <div class="fw-bold">{{ item.nom ? item.nom : i18n[item.type] }}</div>
             <i class="bi bi-crosshair"></i> {{ item.coord }}
           </div>
-          <button class="btn btn-light">
+          <button class="btn btn-light"  @click="router.push('/edit/' + item.type)">
             <i class="bi bi-pencil"></i>
           </button>
         </li>
@@ -47,10 +47,10 @@
         <li class="list-group-item d-flex justify-content-between align-items-start" v-for="item in stationList" :key="item.type">
           <span class="badge text-bg-secondary rounded-pill" style="margin-top:auto;margin-bottom:auto;">{{ item.lvl }}</span>
           <div class="ms-2 me-auto">
-            <div class="fw-bold">{{ item.nom }}</div>
+            <div class="fw-bold">{{ item.nom ? item.nom : i18n[item.type] }}</div>
             <i class="bi bi-crosshair"></i> {{ item.coord }}
           </div>
-          <button class="btn btn-light">
+          <button class="btn btn-light" @click="router.push('/edit/' + item.type)">
             <i class="bi bi-pencil"></i>
           </button>
         </li>
@@ -64,6 +64,7 @@
 import { useRouter } from 'vue-router';
 import _ from 'lodash';
 import { getPlaneteOrder } from '@/utils/optimization';
+import { i18n } from '@/utils/data';
 import { computed } from 'vue';
 
 const router = useRouter();

@@ -950,6 +950,28 @@ const levels = [
   },
 ];
 
+const i18n = {
+  desert_lv1: "Petite planète désertique",
+  desert_lv2: "Planète désertique",
+  desert_lv3: "Grande planète désertique",
+  lava_lv1: "Petite planète incandescente",
+  lava_lv2: "Planète incandescente",
+  lava_lv3: "Grande planète incandescente",
+  water_lv1: "Petite planète aquatique",
+  water_lv2: "Planète aquatique",
+  water_lv3: "Grande planète aquatique",
+  terran_lv1: "Petite planète terrestre",
+  terran_lv2: "Planète terrestre",
+  terran_lv3: "Grande planète terrestre",
+  gas_lv1: "Planète gazeuse",
+  gas_lv2: "Planète gazeuse géante",
+  ice_variation1: "Planète glaciale",
+  ice_variation2: "Planète glaciale",
+  TS1: "Station d'echange 1",
+  TS2: "Station d'echange 2",
+  TS3: "Station d'echange 3"
+}
+
 const planeteDef = [
   {
     Name: "desert_lv1",
@@ -1224,4 +1246,4 @@ const tradStations = [
   },
 ];
 
-export {levels, planeteDef, shipmentRelay, tradStations};
+export {levels, planeteDef, shipmentRelay, tradStations, i18n};

@@ -38,15 +38,20 @@ const loading = ref(false);
 
 const router = useRouter();
 
-const budget = ref(100000);
+const budget = ref(0);
 const results = ref(null);
 
+const personalData = JSON.parse(localStorage.getItem('personalData'));
+
+const defaultBudget = personalData.budget;
+if (budget.value === 0) {
+  budget.value = defaultBudget;
+}
+
 const runOptimization = async () => {
-  console.log("optimizing");
   loading.value = true;
   results.value = null;
-  const personalData = JSON.parse(localStorage.getItem('personalData'));
-
+  
   const enrichedPlanetes = enrichPlanetes([...personalData.planetes, ...personalData.stations], personalData.starterPack, personalData.maxRelayLvl);
 
   const worker = new Worker(new URL('@/workers/solverWorker.js', import.meta.url), { type: 'module' });
@@ -54,7 +59,6 @@ const runOptimization = async () => {
   worker.postMessage({ enrichedPlanetes, budget: budget.value });
 
   worker.onmessage = (event) => {
-    console.log("onmessage",event.data);
     const { solution } = event.data;
     if (event.data.success) {
       const selectedRelays = Object.keys(solution.result.vars)
@@ -76,6 +80,8 @@ const runOptimization = async () => {
     loading.value = false;
     worker.terminate();
   };
+
+  localStorage.setItem('personalData', JSON.stringify({...personalData, budget: budget.value}));
 
 };
 </script>

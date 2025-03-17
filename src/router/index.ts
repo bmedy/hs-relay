@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import SettingsView from '../views/SettingsView.vue'
+import HomeView from '@/views/HomeView.vue'
+import SettingsView from '@/views/SettingsView.vue'
+import EditView from '@/views/EditView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,11 @@ const router = createRouter({
       name: 'settings',
       component: SettingsView,
     },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: EditView,
+    }
   ],
 })
 
