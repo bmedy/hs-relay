@@ -26,6 +26,12 @@
         <input class="form-check-input" type="checkbox" v-model="starterPack" @change="saveStarterPack" id="starterPackInput">
       </div>
     </div>
+    <div class="row mb-3">
+      <label for="displayType" class="col-4 col-check-label">Display as map</label>
+      <div class="col-8">
+        <input class="form-check-input" type="checkbox" v-model="displayAsMap" @change="saveDisplayAsMap" id="displayType">
+      </div>
+    </div>
     <hr />
     <div class="my-4">
       <h6>Planetes :</h6>
@@ -73,6 +79,7 @@ const personalData = JSON.parse(localStorage.getItem('personalData'));
 
 const maxRelayLvl = personalData.maxRelayLvl;
 const starterPack = personalData.starterPack;
+const displayAsMap = personalData.displayAsMap;
 
 const planeteList = computed(() => {
   return personalData.planetes?.map((item) => {
@@ -99,6 +106,11 @@ const saveRelayLevel = (event) => {
 
 const saveStarterPack = (event) => {
   personalData.starterPack = event.target.checked;
+  localStorage.setItem('personalData', JSON.stringify(personalData));
+};
+
+const saveDisplayAsMap = (event) => {
+  personalData.displayAsMap = event.target.checked;
   localStorage.setItem('personalData', JSON.stringify(personalData));
 };
 

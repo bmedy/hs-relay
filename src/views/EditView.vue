@@ -27,7 +27,9 @@
     <div class="row mb-3">
       <label for="sector" class="col-4 col-form-label">Sector</label>
       <div class="col-8">
-        <input v-model="coord" class="form-control" type="text" id="sector">
+        <select class="form-select" v-model="coord" id="sector">
+          <option v-for="n in sectors" :key="n" :value="n">{{ n }}</option>
+        </select>
       </div>
     </div>
     <div class="row mb-3">
@@ -42,6 +44,8 @@ import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import _ from 'lodash';
 import { i18n } from '@/utils/data';
+
+const sectors = ["E-8","E-7","E-6","E-5","F-8","F-7","F-6","F-5","F-4","G-8","G-7","G-6","G-5","G-4","G-3","H-8","H-7","H-6","H-5","H-4","H-3","H-2","I-7","I-6","I-5","I-4","I-3","I-2","J-6","J-5","J-4","J-3","J-2","K-5","K-4","K-3","K-2"];
 
 const router = useRouter();
 const route = useRoute();

@@ -18,11 +18,16 @@
     </div>
     <div class="my-4" v-if="results">
       <p>Gain total optimisé : <strong>{{ results.totalGain }}</strong></p>
-      <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-start" v-for="item in results.selectedRelays" :key="item.sector">
-          <strong>({{ item.sector }}) {{ item.nom }}</strong> <strong>{{ item.lvl }}</strong>
-        </li>
-      </ul>
+      <div v-if="!personalData.displayAsMap">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-start" v-for="item in results.selectedRelays" :key="item.sector">
+            <strong>({{ item.sector }}) {{ item.nom }}</strong> <strong>{{ item.lvl }}</strong>
+          </li>
+        </ul>
+      </div>
+      <div v-if="personalData.displayAsMap">
+        <HexGrid :selected-relays="results.selectedRelays" />
+      </div>
     </div>
   </div>
 
@@ -33,6 +38,7 @@ import { ref } from 'vue';
 import _ from 'lodash';
 import { enrichPlanetes } from '@/utils/optimization';
 import { useRouter } from 'vue-router';
+import HexGrid from '@/components/HexGrid.vue';
 
 const loading = ref(false);
 

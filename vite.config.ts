@@ -15,9 +15,9 @@ export default defineConfig({
     VitePWA({ 
       registerType: 'autoUpdate',
       manifest: {
-        name: 'My Awesome App',
-        short_name: 'MyApp',
-        description: 'My Awesome App description',
+        name: 'HS relay optimizer',
+        short_name: 'HS relay',
+        description: 'Relay optimizer for the game "Hades star"',
         theme_color: '#ffffff',
         icons: [
           {
