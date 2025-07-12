@@ -33,6 +33,13 @@
       </div>
     </div>
     <hr />
+    <div class="row mb-3">
+      <label for="displayType" class="col-4 col-check-label">Data</label>
+      <div class="col-8">
+        <button type="button" class="btn btn-light" @click="downloadCSV">Télécharger CSV</button>
+      </div>
+    </div>
+    <hr />
     <div class="my-4">
       <h6>Planetes :</h6>
       <ul class="list-group">
@@ -113,5 +120,25 @@ const saveDisplayAsMap = (event) => {
   personalData.displayAsMap = event.target.checked;
   localStorage.setItem('personalData', JSON.stringify(personalData));
 };
+
+const downloadCSV = () => {
+  // Convertir en CSV
+  const headers = Object.keys(planeteList.value[0]);
+  const csvRows = [
+    headers.join(';'), // ligne d'en-tête
+    ...planeteList.value.map(row => headers.map(field => `"${row[field]}"`).join(';'))
+  ];
+
+  const csvContent = csvRows.join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+  // Créer un lien de téléchargement
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.setAttribute('download', 'export.csv');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 
 </script>
