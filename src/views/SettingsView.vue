@@ -101,7 +101,7 @@ const stationList = computed(() => {
   return personalData.stations?.map((item) => {
     return {
       ...item,
-      order: item.type.substring(2),
+      order: "9"+item.type.substring(2),
     };
   }).sort((a, b) => a.order - b.order);
 });
@@ -124,9 +124,11 @@ const saveDisplayAsMap = (event) => {
 const downloadCSV = () => {
   // Convertir en CSV
   const headers = Object.keys(planeteList.value[0]);
+  const sHeaders = Object.keys(stationList.value[0]);
   const csvRows = [
     headers.join(';'), // ligne d'en-tête
-    ...planeteList.value.map(row => headers.map(field => `"${row[field]}"`).join(';'))
+    ...planeteList.value.map(row => headers.map(field => `"${row[field]}"`).join(';')),
+    ...stationList.value.map(row => sHeaders.map(field => `"${row[field]}"`).join(';'))
   ];
 
   const csvContent = csvRows.join('\n');
