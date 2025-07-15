@@ -23,7 +23,7 @@ import { ref, computed, defineProps } from 'vue';
 
 const {selectedRelays} = defineProps(['selectedRelays']);
 console.log(selectedRelays);
-const hexSize = 50;
+const hexSize = 54;
 const hexWidth = Math.sqrt(3) * hexSize;
 const hexHeight = 2 * hexSize;
 const spacing = 0; // Espacement entre les hexagones
@@ -90,7 +90,6 @@ const getCellInfos = (cell) => {
 
 <style scoped>
 svg {
-  display: block;
-  margin: auto;
+  width: 100%;
 }
 </style>
